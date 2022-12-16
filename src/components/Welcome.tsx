@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-export const Welcome = () => {
-    const [state, setState] = useState({
-        name: '',
-        lastname: ''
-    })
+type WelcomeProps = {
+    name: string,
+    messageCount: number,
+    isLoggedIn: boolean
+}
 
+export const Welcome = (props: WelcomeProps) => {
     return (
         <>
-            <div>Welcome {state?.name || 'anonimous'}</div>
-            <button onClick={() => {
-                setState((prevState) => {
-                    return { ...prevState, name: 'Luis' }
-                });
-            }}>
-                Login
-            </button>
+            <h3>
+                {props.isLoggedIn
+                    ? `Welcome ${props.name}, You have ${props.messageCount} unread messages.`
+                    : `Welcome Guest`}
+            </h3>
         </>
     )
 }
